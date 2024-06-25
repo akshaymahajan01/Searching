@@ -1,0 +1,65 @@
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+
+       
+
+        int i = binarysearch(arr, x);
+
+        int j = i + 1;                                  /// from this you can learn implementation skills ///
+
+        vector<int> v;
+
+        while (k > 0 && i >= 0 && j < arr.size()) {
+            if (abs(x - arr[i]) <= abs(x - arr[j])) {
+                v.push_back(arr[i]);
+                i--;
+            } else {
+                v.push_back(arr[j]);
+                j++;
+            }
+            k--;
+        }
+
+        while (k > 0 && i >= 0) {
+            v.push_back(arr[i]);
+            i--;
+            k--;
+        }
+
+        while (k > 0 && j < arr.size()) {
+            v.push_back(arr[j]);
+            j++;
+            k--;
+        }
+
+        sort(v.begin(), v.end());
+
+        return v;
+    }
+
+    int binarysearch(vector<int>& arr, int x) {
+        int left = 0;
+        int right = arr.size() - 1;
+
+        int ans=0;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == x)
+                return mid;
+            else if (arr[mid] < x){
+                ans = mid;
+                left = mid + 1;
+            }
+             else{
+                right = mid - 1;
+             }
+                
+        }
+        return ans;
+        
+    }
+};
