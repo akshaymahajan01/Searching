@@ -1,6 +1,6 @@
 class Solution {
 public:
-
+ 
     int countPartitions(vector<int>& nums, int mid){
 
         int partition=1;
